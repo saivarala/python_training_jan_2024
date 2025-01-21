@@ -1,0 +1,1412 @@
+NumPy Tutorial
+Introduction
+Creating NumPy Array
+NumPy Array Manipulation
+Matrix in NumPy
+Operations on NumPy Array
+Reshaping NumPy Array
+Indexing NumPy Array
+Arithmetic operations on NumPyArray
+Linear Algebra in NumPy Array
+NumPy and Random Data
+Sorting and Searching in NumPy Array
+Universal Functions
+Working With Images
+1. Introduction
+NumPy revolutionized the way we handle numerical data in Python. It is created to address the limitations of traditional Python lists when it comes to numerical computing. It is developed by Travis Olliphant in 2005.
+
+NumPy provides a powerful array object that is both efficient and flexible. Its primary goal is to facilitate complex mathematical and scientific operations by introducing array-oriented computing capabilities. NumPy’s design allows for seamless integration with other scientific libraries, enabling faster execution of numerical tasks.
+
+As a result, NumPy has become a cornerstone in the Python ecosystem, essential for data manipulation, machine learning, and scientific research.
+
+2. Creating NumPy Array
+1. Numpy – Array Creation
+2. The Arange Method
+3. The Zero Method
+4. Create a Numpy array filled with all ones
+5. The linspace Method
+6. The eye Method
+7. Numpy Meshgrid function
+8. Creating a one-dimensional NumPy array
+9. How to create an empty and a full NumPy array?
+10. How to create a vector in Python using NumPy
+1. Numpy – Array Creation
+Array creation using array functions : array(data type, value list) function is used to create an array with data type and value list specified in its arguments.
+
+# Python code to demonstrate the working of 
+# array()
+  
+# importing "array" for array operations
+import array
+  
+# initializing array with array values
+# initializes array with signed integers
+arr = array.array('i', [1, 2, 3]) 
+ 
+# printing original array
+print ("The new created array is : ",end="")
+for i in range (0,3):
+    print (arr[i], end=" ")
+ 
+print ("\r")
+The new created array is : 1 2 3 
+2. The Arange Method
+The arange([start,] stop[, step,][, dtype]) : Returns an array with evenly spaced elements as per the interval. The interval mentioned is half-opened i.e. [Start, Stop)
+
+# Python Programming illustrating
+# numpy.arange method
+
+import numpy as geek
+
+print("A\n", geek.arange(4).reshape(2, 2), "\n")
+print("A\n", geek.arange(4, 10), "\n")
+print("A\n", geek.arange(4, 20, 3), "\n")
+A
+ [[0 1]
+ [2 3]] 
+
+A
+ [4 5 6 7 8 9] 
+
+A
+ [ 4  7 10 13 16 19] 
+
+3. The Zero Method
+The numpy.zeros() function returns a new array of given shape and type, with zeros.
+
+# Python Program illustrating 
+# numpy.zeros method 
+
+import numpy as geek 
+
+b = geek.zeros(2, dtype = int) 
+print("Matrix b : \n", b) 
+
+a = geek.zeros([2, 2], dtype = int) 
+print("\nMatrix a : \n", a) 
+
+c = geek.zeros([3, 3]) 
+print("\nMatrix c : \n", c) 
+Matrix b : 
+ [0 0]
+
+Matrix a : 
+ [[0 0]
+ [0 0]]
+
+Matrix c : 
+ [[0. 0. 0.]
+ [0. 0. 0.]
+ [0. 0. 0.]]
+4. Create a Numpy array filled with all ones
+To create an array filled with all ones, given the shape and type of array we can use numpy.ones() method of NumPy library in Python.
+
+# Python Program to create array with all ones 
+import numpy as geek 
+
+a = geek.ones(3, dtype = int) 
+print("Matrix a : \n", a) 
+
+b = geek.ones([3, 3], dtype = int) 
+print("\nMatrix b : \n", b) 
+Matrix a : 
+ [1 1 1]
+
+Matrix b : 
+ [[1 1 1]
+ [1 1 1]
+ [1 1 1]]
+5. The linspace Method
+The NumPy.linspace() function returns an array of evenly spaced values within the specified interval [start, stop].
+
+It is similar to NumPy.arange() function but instead of a step, it uses a sample number.
+
+# Python Programming illustrating 
+# numpy.linspace method 
+
+import numpy as geek 
+
+# restep set to True 
+print("B\n", geek.linspace(2.0, 3.0, num=5, retstep=True), "\n") 
+
+# To evaluate sin() in long range 
+x = geek.linspace(0, 2, 10) 
+print("A\n", geek.sin(x)) 
+B
+ (array([2.  , 2.25, 2.5 , 2.75, 3.  ]), 0.25) 
+
+A
+ [0.         0.22039774 0.42995636 0.6183698  0.77637192 0.8961922
+ 0.9719379  0.99988386 0.9786557  0.90929743]
+6. The eye Method
+numpy.eye(R, C = None, k = 0, dtype = type <‘float’>) : –The eye tool returns a 2-D array with 1’s as the diagonal and 0’s elsewhere. The diagonal can be main, upper, or lower depending on the optional parameter k. A positive k is for the upper diagonal, a negative k is for the lower, and a 0 k (default) is for the main diagonal.
+
+# Python Programming illustrating
+# numpy.eye method
+
+import numpy as geek
+
+# 2x2 matrix with 1's on main diagonal
+b = geek.eye(2, dtype = float)
+print("Matrix b : \n", b)
+
+# matrix with R=4 C=5 and 1 on diagonal
+# below main diagonal
+a = geek.eye(4, 5, k = -1)
+print("\nMatrix a : \n", a)
+Matrix b : 
+ [[1. 0.]
+ [0. 1.]]
+
+Matrix a : 
+ [[0. 0. 0. 0. 0.]
+ [1. 0. 0. 0. 0.]
+ [0. 1. 0. 0. 0.]
+ [0. 0. 1. 0. 0.]]
+7. Numpy Meshgrid function
+The numpy.meshgrid function is used to create a rectangular grid out of two given one-dimensional arrays representing the Cartesian indexing or Matrix indexing. Meshgrid function is somewhat inspired from MATLAB.
+
+# Sample code for generation of first example
+import numpy as np
+# from matplotlib import pyplot as plt
+# pyplot imported for plotting graphs
+
+x = np.linspace(-4, 4, 9)
+
+# numpy.linspace creates an array of
+# 9 linearly placed elements between
+# -4 and 4, both inclusive 
+y = np.linspace(-5, 5, 11)
+
+# The meshgrid function returns
+# two 2-dimensional arrays 
+x_1, y_1 = np.meshgrid(x, y)
+
+print("x_1 = ")
+print(x_1)
+print("y_1 = ")
+print(y_1)
+x_1 = 
+[[-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]
+ [-4. -3. -2. -1.  0.  1.  2.  3.  4.]]
+y_1 = 
+[[-5. -5. -5. -5. -5. -5. -5. -5. -5.]
+ [-4. -4. -4. -4. -4. -4. -4. -4. -4.]
+ [-3. -3. -3. -3. -3. -3. -3. -3. -3.]
+ [-2. -2. -2. -2. -2. -2. -2. -2. -2.]
+ [-1. -1. -1. -1. -1. -1. -1. -1. -1.]
+ [ 0.  0.  0.  0.  0.  0.  0.  0.  0.]
+ [ 1.  1.  1.  1.  1.  1.  1.  1.  1.]
+ [ 2.  2.  2.  2.  2.  2.  2.  2.  2.]
+ [ 3.  3.  3.  3.  3.  3.  3.  3.  3.]
+ [ 4.  4.  4.  4.  4.  4.  4.  4.  4.]
+ [ 5.  5.  5.  5.  5.  5.  5.  5.  5.]]
+8. Creating a one-dimensional NumPy array
+The One-dimensional array contains elements only in one dimension. In other words, the shape of the NumPy array should contain only one value in the tuple. Let us see how to create 1-dimensional NumPy arrays.
+
+import numpy as np
+
+# creating the list
+list = [100, 200, 300, 400]
+
+# creating 1-d array
+n = np.array(list)
+print(n)
+[100 200 300 400]
+9. How to create an empty and a full NumPy array?
+Sometimes there is a need to create an empty and full array simultaneously for a particular question. In this situation, we have two functions named numpy.empty() and numpy. full() to create an empty and full array. Here we will see different examples:
+
+import numpy as np
+
+
+# Create an empty array
+empa = np.empty((3, 4), dtype=int)
+print("Empty Array")
+print(empa)
+
+# Create a full array
+flla = np.full([3, 3], 55, dtype=int)
+print("\n Full Array")
+print(flla)
+Empty Array
+[[98650888218613              0              0              0]
+ [             0              0              0              0]
+ [             0              0              0              0]]
+
+ Full Array
+[[55 55 55]
+ [55 55 55]
+ [55 55 55]]
+10. How to create a vector in Python using NumPy
+Vector are built from components, which are ordinary numbers. We can think of a vector as a list of numbers, and vector algebra as operations performed on the numbers in the list. In other words vector is the numpy 1-D array.
+
+# importing numpy 
+import numpy as np 
+
+# creating a 1-D list (Horizontal) 
+list1 = [1, 2, 3] 
+
+# creating a 1-D list (Vertical) 
+list2 = [[10], 
+		[20], 
+		[30]] 
+
+# creating a vector1 
+# vector as row 
+vector1 = np.array(list1) 
+
+# creating a vector 2 
+# vector as column 
+vector2 = np.array(list2) 
+
+
+# showing horizontal vector 
+print("Horizontal Vector") 
+print(vector1) 
+
+print("----------------") 
+
+# showing vertical vector 
+print("Vertical Vector") 
+print(vector2) 
+Horizontal Vector
+[1 2 3]
+----------------
+Vertical Vector
+[[10]
+ [20]
+ [30]]
+3. NumPy Array Manipulation
+1. Copy and View in NumPy Array
+2. Appending values at the end of an NumPy array
+3. How to swap columns of a given NumPy array?
+4. Stack the sequence of NumPy array horizontally
+5. Stack the sequence of NumPy array vertically
+6. Joining NumPy Array
+7. Combining a one and a two-dimensional NumPy Array
+8. Combined array index by index
+9. Splitting Arrays in NumPy
+10. Compare two NumPy arrays
+11. Find the union of two NumPy arrays
+12. Find unique rows in a NumPy array
+13. Get the unique values from an array
+14. Trim the leading and/or trailing zeros from a 1-D array
+15. Insert a new axis within a NumPy array
+1. Copy and View in NumPy Array
+# Example: Making a view and changing the original array
+import numpy as np 
+# creating array 
+arr = np.array([2, 4, 6, 8, 10]) 
+# creating view 
+v = arr.view() 
+# both arr and v have different id 
+print("id of arr", id(arr)) 
+print("id of v", id(v)) 
+# changing original array 
+# will effect view 
+arr[0] = 12
+# printing array and view 
+print("original array- ", arr) 
+print("view- ", v)
+id of arr 134665861508400
+id of v 134665861508688
+original array-  [12  4  6  8 10]
+view-  [12  4  6  8 10]
+# Example: Making a copy and changing the original array
+import numpy as np 
+
+# creating array 
+arr = np.array([2, 4, 6, 8, 10]) 
+
+# creating copy of array 
+c = arr.copy() 
+
+# both arr and c have different id 
+print("id of arr", id(arr)) 
+print("id of c", id(c)) 
+
+# changing original array 
+# this will not effect copy 
+arr[0] = 12
+
+# printing array and copy 
+print("original array- ", arr) 
+print("copy- ", c) 
+id of arr 134665861508112
+id of c 134665861508784
+original array-  [12  4  6  8 10]
+copy-  [ 2  4  6  8 10]
+2. Appending values at the end of an NumPy array
+# importing the module
+import numpy as np
+
+# create an array
+arr = np.arange(1, 13).reshape(2, 6)
+print('Original Array')
+print(arr, '\n')
+
+# create another array which is
+# to be appended column-wise
+col = np.arange(5, 11).reshape(1, 6)
+print('Array to be appended column wise')
+print(col)
+arr_col = np.append(arr, col, axis=0)
+print('Array after appending the values column wise')
+print(arr_col, '\n')
+
+# create an array which is
+# to be appended row wise
+row = np.array([1, 2]).reshape(2, 1)
+print('Array to be appended row wise')
+print(row)
+arr_row = np.append(arr, row, axis=1)
+print('Array after appending the values row wise')
+print(arr_row)
+Original Array
+[[ 1  2  3  4  5  6]
+ [ 7  8  9 10 11 12]] 
+
+Array to be appended column wise
+[[ 5  6  7  8  9 10]]
+Array after appending the values column wise
+[[ 1  2  3  4  5  6]
+ [ 7  8  9 10 11 12]
+ [ 5  6  7  8  9 10]] 
+
+Array to be appended row wise
+[[1]
+ [2]]
+Array after appending the values row wise
+[[ 1  2  3  4  5  6  1]
+ [ 7  8  9 10 11 12  2]]
+3. How to swap columns of a given NumPy array?
+# importing Module
+import numpy as np
+
+
+# creating array with shape(4,3)
+my_array = np.arange(12).reshape(4, 3)
+print("Original array:")
+print(my_array)
+
+# swapping the column with index of 
+# original array
+my_array[:, [2, 0]] = my_array[:, [0, 2]]
+print("After swapping arrays the last column and first column:")
+print(my_array)
+Original array:
+[[ 0  1  2]
+ [ 3  4  5]
+ [ 6  7  8]
+ [ 9 10 11]]
+After swapping arrays the last column and first column:
+[[ 2  1  0]
+ [ 5  4  3]
+ [ 8  7  6]
+ [11 10  9]]
+4. Stack the sequence of NumPy array horizontally
+# Python program explaining 
+# hstack() function 
+
+import numpy as geek 
+
+# input array 
+in_arr1 = geek.array([ 1, 2, 3] ) 
+print ("1st Input array : \n", in_arr1) 
+
+in_arr2 = geek.array([ 4, 5, 6] ) 
+print ("2nd Input array : \n", in_arr2) 
+
+# Stacking the two arrays horizontally 
+out_arr = geek.hstack((in_arr1, in_arr2)) 
+print ("Output horizontally stacked array:\n ", out_arr) 
+1st Input array : 
+ [1 2 3]
+2nd Input array : 
+ [4 5 6]
+Output horizontally stacked array:
+  [1 2 3 4 5 6]
+5. Stack the sequence of NumPy array vertically
+# Python program explaining 
+# vstack() function 
+
+import numpy as geek 
+
+# input array 
+in_arr1 = geek.array([ 1, 2, 3] ) 
+print ("1st Input array : \n", in_arr1) 
+
+in_arr2 = geek.array([ 4, 5, 6] ) 
+print ("2nd Input array : \n", in_arr2) 
+
+# Stacking the two arrays vertically 
+out_arr = geek.vstack((in_arr1, in_arr2)) 
+print ("Output vertically stacked array:\n ", out_arr) 
+1st Input array : 
+ [1 2 3]
+2nd Input array : 
+ [4 5 6]
+Output vertically stacked array:
+  [[1 2 3]
+ [4 5 6]]
+6. Joining NumPy Array
+NumPy provides various functions to combine arrays. In this article, we will discuss some of the major ones.
+
+numpy.concatenate
+numpy.stack
+numpy.block
+import numpy as np 
+
+array_1 = np.array([1, 2]) 
+array_2 = np.array([3, 4]) 
+
+array_new = np.concatenate((array_1, array_2)) 
+print(array_new) 
+[1 2 3 4]
+7. Combining a one and a two-dimensional NumPy Array
+# importing Numpy package 
+import numpy as np 
+
+num_1d = np.arange(5) 
+print("One dimensional array:") 
+print(num_1d) 
+
+num_2d = np.arange(10).reshape(2,5) 
+print("\nTwo dimensional array:") 
+print(num_2d) 
+
+# Combine 1-D and 2-D arrays and display 
+# their elements using numpy.nditer() 
+for a, b in np.nditer([num_1d, num_2d]): 
+	print("%d:%d" % (a, b),)
+One dimensional array:
+[0 1 2 3 4]
+
+Two dimensional array:
+[[0 1 2 3 4]
+ [5 6 7 8 9]]
+0:0
+1:1
+2:2
+3:3
+4:4
+0:5
+1:6
+2:7
+3:8
+4:9
+8. Combined array index by index
+# import numpy 
+import numpy as np 
+
+gfg1 = np.array([1, 2, 3]) 
+gfg2 = np.array([4, 5, 6]) 
+
+# using numpy.dstack() method 
+print(np.dstack((gfg1, gfg2))) 
+[[[1 4]
+  [2 5]
+  [3 6]]]
+9. Splitting Arrays in NumPy
+import numpy as np
+
+# Creating an example array
+array = np.arange(6)
+
+# Splitting the array into 2 equal parts along the first axis (axis=0)
+result = np.split(array, 2)
+
+print("Array:")
+print(array)
+print("\nResult after numpy.split():")
+print(result)
+Array:
+[0 1 2 3 4 5]
+
+Result after numpy.split():
+[array([0, 1, 2]), array([3, 4, 5])]
+10. Compare two NumPy arrays
+import numpy as np
+
+an_array = np.array([[1, 2], [3, 4]])
+another_array = np.array([[1, 2], [3, 4]])
+
+comparison = an_array == another_array
+equal_arrays = comparison.all()
+
+print(equal_arrays)
+True
+import numpy as np
+
+
+a = np.array([101, 99, 87])
+b = np.array([897, 97, 111])
+
+print("Array a: ", a)
+print("Array b: ", b)
+
+print("a > b")
+print(np.greater(a, b))
+
+print("a >= b")
+print(np.greater_equal(a, b))
+
+print("a < b")
+print(np.less(a, b))
+
+print("a <= b")
+print(np.less_equal(a, b))
+Array a:  [101  99  87]
+Array b:  [897  97 111]
+a > b
+[False  True False]
+a >= b
+[False  True False]
+a < b
+[ True False  True]
+a <= b
+[ True False  True]
+11. Find the union of two NumPy arrays
+# import libraries 
+import numpy as np 
+
+
+arr1 = np.array([10, 20, 30, 40]) 
+print("array1 ", arr1) 
+
+arr2 = np.array([20, 40, 60, 80]) 
+print("array2 ", arr2) 
+
+# print union of the two arrays 
+print("Union of two arrays :", np.union1d(arr1, arr2)) 
+array1  [10 20 30 40]
+array2  [20 40 60 80]
+Union of two arrays : [10 20 30 40 60 80]
+12. Find unique rows in a NumPy array
+# import library
+import numpy as np
+
+# Create a 2D numpy array
+arr2D = np.array([[11, 11, 12, 11],
+					[13, 11, 12, 11],
+					[16, 11, 12, 11],
+					[11, 11, 12, 11]])
+
+print('Original Array :' ,
+	arr2D, sep = '\n')
+
+uniqueRows = np.unique(arr2D)
+						
+
+# print the output result
+print('Unique Rows:',
+	uniqueRows, sep = '\n')
+Original Array :
+[[11 11 12 11]
+ [13 11 12 11]
+ [16 11 12 11]
+ [11 11 12 11]]
+Unique Rows:
+[11 12 13 16]
+13. Get the unique values from an array
+# import numpy 
+import numpy as np 
+
+a = [1, 2, 2, 4, 3, 6, 4, 8] 
+
+# using np.unique() method 
+gfg = np.unique(a) 
+
+print(gfg) 
+[1 2 3 4 6 8]
+14. Trim the leading and/or trailing zeros from a 1-D array
+import numpy as geek 
+gfg = geek.array((0, 0, 0, 0, 1, 5, 7, 0, 6, 2, 9, 0, 10, 0, 0)) 
+
+# without trim parameter 
+# returns an array without any leading zeros 
+
+res = geek.trim_zeros(gfg, 'f') 
+print(res) 
+[ 1  5  7  0  6  2  9  0 10  0  0]
+15. Insert a new axis within a NumPy array
+import numpy as np
+
+arr = np.arange(5*5).reshape(5, 5)
+print(arr.shape)
+
+# promoting 2D array to a 5D array
+# arr[None, ..., None, None]
+arr_5D = arr[np.newaxis, ..., np.newaxis, np.newaxis]
+
+print(arr_5D.shape)
+(5, 5)
+(1, 5, 5, 1, 1)
+4. Matrix in NumPy
+In python matrix can be implemented as 2D list or 2D Array. Forming matrix from latter, gives the additional functionalities for performing various operations in matrix. These operations and array are defines in module “numpy“.
+
+Operation on Matrix :
+
+add() :- This function is used to perform element wise matrix addition.
+subtract() :- This function is used to perform element wise matrix subtraction.
+divide() :- This function is used to perform element wise matrix division.
+multiply() :- This function is used to perform element wise matrix multiplication.
+dot() :- This function is used to compute the matrix multiplication, rather than element wise multiplication.
+sqrt() :- This function is used to compute the square root of each element of matrix.
+sum(x,axis) :- This function is used to add all the elements in matrix. Optional “axis” argument computes the column sum if axis is 0 and row sum if axis is 1.
+“T” :- This argument is used to transpose the specified matrix.
+# Python code to demonstrate matrix operations 
+# add(), subtract() and divide() 
+
+# importing numpy for matrix operations 
+import numpy 
+
+# initializing matrices 
+x = numpy.array([[1, 2], [4, 5]]) 
+y = numpy.array([[7, 8], [9, 10]]) 
+
+# using add() to add matrices 
+print ("The element wise addition of matrix is : ") 
+print (numpy.add(x,y)) 
+
+# using subtract() to subtract matrices 
+print ("The element wise subtraction of matrix is : ") 
+print (numpy.subtract(x,y)) 
+
+# using divide() to divide matrices 
+print ("The element wise division of matrix is : ") 
+print (numpy.divide(x,y)) 
+The element wise addition of matrix is : 
+[[ 8 10]
+ [13 15]]
+The element wise subtraction of matrix is : 
+[[-6 -6]
+ [-5 -5]]
+The element wise division of matrix is : 
+[[0.14285714 0.25      ]
+ [0.44444444 0.5       ]]
+# Python code to demonstrate matrix operations 
+# multiply() and dot() 
+
+# importing numpy for matrix operations 
+import numpy 
+
+# initializing matrices 
+x = numpy.array([[1, 2], [4, 5]]) 
+y = numpy.array([[7, 8], [9, 10]]) 
+
+# using multiply() to multiply matrices element wise 
+print ("The element wise multiplication of matrix is : ") 
+print (numpy.multiply(x,y)) 
+
+# using dot() to multiply matrices 
+print ("The product of matrices is : ") 
+print (numpy.dot(x,y)) 
+The element wise multiplication of matrix is : 
+[[ 7 16]
+ [36 50]]
+The product of matrices is : 
+[[25 28]
+ [73 82]]
+# Python code to demonstrate matrix operations 
+# sqrt(), sum() and "T" 
+
+# importing numpy for matrix operations 
+import numpy 
+
+# initializing matrices 
+x = numpy.array([[1, 2], [4, 5]]) 
+y = numpy.array([[7, 8], [9, 10]]) 
+
+# using sqrt() to print the square root of matrix 
+print ("The element wise square root is : ") 
+print (numpy.sqrt(x)) 
+
+# using sum() to print summation of all elements of matrix 
+print ("The summation of all matrix element is : ") 
+print (numpy.sum(y)) 
+
+# using sum(axis=0) to print summation of all columns of matrix 
+print ("The column wise summation of all matrix is : ") 
+print (numpy.sum(y,axis=0)) 
+
+# using sum(axis=1) to print summation of all columns of matrix 
+print ("The row wise summation of all matrix is : ") 
+print (numpy.sum(y,axis=1)) 
+
+# using "T" to transpose the matrix 
+print ("The transpose of given matrix is : ") 
+print (x.T) 
+The element wise square root is : 
+[[1.         1.41421356]
+ [2.         2.23606798]]
+The summation of all matrix element is : 
+34
+The column wise summation of all matrix is : 
+[16 18]
+The row wise summation of all matrix is : 
+[15 19]
+The transpose of given matrix is : 
+[[1 4]
+ [2 5]]
+# Using nested loops:
+A = [[1,2],[4,5]] 
+B = [[7,8],[9,10]] 
+rows = len(A) 
+cols = len(A[0]) 
+
+# Element wise addition 
+C = [[0 for i in range(cols)] for j in range(rows)] 
+for i in range(rows): 
+	for j in range(cols): 
+		C[i][j] = A[i][j] + B[i][j] 
+print("Addition of matrices: \n", C) 
+
+# Element wise subtraction 
+D = [[0 for i in range(cols)] for j in range(rows)] 
+for i in range(rows): 
+	for j in range(cols): 
+		D[i][j] = A[i][j] - B[i][j] 
+print("Subtraction of matrices: \n", D) 
+
+# Element wise division 
+E = [[0 for i in range(cols)] for j in range(rows)] 
+for i in range(rows): 
+	for j in range(cols): 
+		E[i][j] = A[i][j] / B[i][j] 
+print("Division of matrices: \n", E) 
+Addition of matrices: 
+ [[8, 10], [13, 15]]
+Subtraction of matrices: 
+ [[-6, -6], [-5, -5]]
+Division of matrices: 
+ [[0.14285714285714285, 0.25], [0.4444444444444444, 0.5]]
+5. Operations on NumPy Array
+Binary Operations
+Mathematical Function
+String Operations
+6. Reshaping NumPy Array
+1. Reshaping : 1-D to 2D
+2. Reshaping : 1-D to 3-D
+3. Reshaping N-D to 1-D array
+4. Reshaping using unknown dimension
+5. Errors Occur during reshaping
+# 1. Reshaping : 1-D to 2D
+# importing numpy
+import numpy as np
+
+# creating a numpy array
+array = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+
+# printing array
+print("Array : " + str(array))
+
+# length of array
+n = array.size
+
+# N-D array N dimension
+N = 4
+
+# calculating M
+M = n//N
+
+# reshaping numpy array
+# converting it to 2-D from 1-D array
+reshaped1 = array.reshape((N, M))
+
+# printing reshaped array
+print("First Reshaped Array : ")
+print(reshaped1)
+
+# creating another reshaped array
+reshaped2 = np.reshape(array, (2, 8))
+
+# printing reshaped array
+print("Second Reshaped Array : ")
+print(reshaped2)
+Array : [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16]
+First Reshaped Array : 
+[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]
+ [13 14 15 16]]
+Second Reshaped Array : 
+[[ 1  2  3  4  5  6  7  8]
+ [ 9 10 11 12 13 14 15 16]]
+# 2. Reshaping : 1-D to 3-D
+# importing numpy
+import numpy as np
+
+# creating a numpy array
+array = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+
+# printing array
+print("Array : " + str(array))
+
+
+# reshaping numpy array
+# converting it to 3-D from 1-D array
+reshaped = array.reshape((2, 2, 4))
+
+# printing reshaped array
+print("Reshaped 3-D Array : ")
+print(reshaped)
+Array : [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16]
+Reshaped 3-D Array : 
+[[[ 1  2  3  4]
+  [ 5  6  7  8]]
+
+ [[ 9 10 11 12]
+  [13 14 15 16]]]
+# 3. Reshaping N-D to 1-D array 
+# importing numpy
+import numpy as np
+
+# creating a numpy array
+array = np.array([[1, 2, 3],
+				[4, 5, 6],
+				[7, 8, 9]])
+
+# printing array
+print(" 2-D Array : ")
+print(array)
+
+
+# reshaping numpy array
+# converting it to 1-D from 2-D array
+reshaped = array.reshape((9))
+
+# or we can use unknown dimension
+# reshaped = array.reshape((-1))
+
+# printing reshaped array
+print("Reshaped 1-D Array : ")
+print(reshaped)
+ 2-D Array : 
+[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+Reshaped 1-D Array : 
+[1 2 3 4 5 6 7 8 9]
+# 4. Reshaping using unknown dimension 
+# importing numpy
+import numpy as np
+
+# creating a numpy array
+array = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+
+# printing array
+print("Array : " + str(array))
+
+
+# reshaping numpy array
+# converting it to 3-D from 1-D array
+reshaped1 = array.reshape((2, 2, -1))
+
+# printing reshaped array
+print("First Reshaped Array : ")
+print(reshaped1)
+
+
+# converting it to 2-D array
+reshaped2 = array.reshape((4, -1))
+
+# printing reshaped array
+print("Second Reshaped Array : ")
+print(reshaped2)
+Array : [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16]
+First Reshaped Array : 
+[[[ 1  2  3  4]
+  [ 5  6  7  8]]
+
+ [[ 9 10 11 12]
+  [13 14 15 16]]]
+Second Reshaped Array : 
+[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]
+ [13 14 15 16]]
+7. Indexing NumPy Array
+Types of Indexing in NumPy Array
+There are two types of indexing used in Python NumPy:
+
+1. Basic slicing and indexing
+2. Advanced indexing
+1. Basic slicing and indexing
+Basic slicing and indexing is used to access a specific element or range of elements from a NumPy array.
+
+Basic slicing and indexing only return the view of the array.
+
+import numpy as np  
+# A 3 dimensional array.  
+b = np.array([[[1, 2, 3],[4, 5, 6]],  
+            [[7, 8, 9],[10, 11, 12]]])  
+print(b[...,1]) #Equivalent to b[: ,: ,1 ]
+[[ 2  5]
+ [ 8 11]]
+2. Advanced indexing
+NumPy Advanced indexing returns a copy of data rather than a view of it. Advanced indexing is of two types integer and Boolean.
+
+# Example: Using purely integer array indexing
+# Python program showing advanced indexing 
+import numpy as np 
+a = np.array([[1 ,2 ],[3 ,4 ],[5 ,6 ]]) 
+print(a[[0 ,1 ,2 ],[0 ,0 ,1]])
+[1 3 6]
+# Example 1: Using boolean indexing on NumPy array to find numbers greater than 50
+# You may wish to select numbers greater than 50 
+import numpy as np 
+
+a = np.array([10, 40, 80, 50, 100]) 
+print(a[a>50])
+[ 80 100]
+8. Arithmetic operations on NumPyArray
+1. Broadcasting with NumPy Arrays
+2. Estimation of Variable
+3. Operations on Numpy Arrays
+1. Broadcasting with NumPy Arrays
+The term broadcasting refers to the "ability of NumPy to treat arrays with different dimensions during arithmetic operations". This process involves certain rules that allow the smaller array to be ‘broadcast’ across the larger one, ensuring that they have compatible shapes for these operations.
+
+Broadcasting is not limited to two arrays; it can be applied over multiple arrays as well.
+
+import numpy as np 
+
+a = np.array([5, 7, 3, 1]) 
+b = np.array([90, 50, 0, 30]) 
+
+# array are compatible because of same Dimension 
+c = a * b 
+print(c) 
+[450 350   0  30]
+2. Estimation of Variable
+Variability: It is the import dimension that measures the data variation i.e. whether the data is spread out or tightly clustered. Also known as Dispersion When working on data sets in Machine Learning or Data Science, involves many steps – variance measurement, reduction, and distinguishing random variability from the real one. identifying sources of real variability, making decisions regarding the pre-processing choice or model selection based on it.
+
+Terms related to Variability Metrics :
+
+-> Deviation -> Variance -> Standard Deviation -> Mean Absolute Deviation -> Median Absolute Deviation -> Order Statistics -> Range -> Percentile -> Inter-quartile Range
+
+Deviation: We can call it – errors or residuals also. It is the measure of how different/dispersed the values are, from the central/observed value.
+Variance (s2): It is the best-known measure to estimate the variability as it is Squared Deviation. One can call it mean squared error as it is the average of standard deviation.
+# Variance
+
+import numpy as np
+
+Sequence = [2, 3, 5, 6, 7, 9]
+
+var = np.var(Sequence)
+
+print("Variance : ", var)
+Variance :  5.5555555555555545
+Standard Deviation: It is the square root of Variance. Is also referred to as Euclidean Norm.
+# Standard Deviation
+
+import numpy as np
+
+Sequence = [2, 3, 5, 6, 7, 9]
+
+std = np.std(Sequence)
+
+print("Standard Deviation : ", std)
+Standard Deviation :  2.357022603955158
+Mean Absolute Deviation: One can estimate a typical estimation for these deviations. If we average the values, the negative deviations would offset the positive ones. Also, the sum of deviations from the mean is always zero. So, it is a simple approach to take the average deviation itself.
+# Mean Absolute Deviation
+
+import numpy as np
+
+def mad(data):
+	return np.mean(np.absolute(
+			data - np.mean(data)))
+	
+Sequence = [2, 4, 6, 8] 
+
+print ("Mean Absolute Deviation : ", mad(Sequence))
+Mean Absolute Deviation :  2.0
+3. Operations on Numpy Arrays
+# Python code to perform arithmetic
+# operations on NumPy array
+
+
+import numpy as np 
+
+
+# Initializing the array
+arr1 = np.arange(4, dtype = np.float_).reshape(2, 2) 
+
+print('First array:') 
+print(arr1)
+
+print('\nSecond array:') 
+arr2 = np.array([12, 12]) 
+print(arr2)
+
+print('\nAdding the two arrays:') 
+print(np.add(arr1, arr2))
+
+print('\nSubtracting the two arrays:') 
+print(np.subtract(arr1, arr2))
+
+print('\nMultiplying the two arrays:')
+print(np.multiply(arr1, arr2))
+
+print('\nDividing the two arrays:')
+print(np.divide(arr1, arr2))
+First array:
+[[0. 1.]
+ [2. 3.]]
+
+Second array:
+[12 12]
+
+Adding the two arrays:
+[[12. 13.]
+ [14. 15.]]
+
+Subtracting the two arrays:
+[[-12. -11.]
+ [-10.  -9.]]
+
+Multiplying the two arrays:
+[[ 0. 12.]
+ [24. 36.]]
+
+Dividing the two arrays:
+[[0.         0.08333333]
+ [0.16666667 0.25      ]]
+# Python code to perform reciprocal operation
+# on NumPy array
+import numpy as np 
+arr = np.array([25, 1.33, 1, 1, 100]) 
+
+print('Our array is:')
+print(arr)
+
+print('\nAfter applying reciprocal function:') 
+print(np.reciprocal(arr))
+
+arr2 = np.array([25], dtype = int)
+print('\nThe second array is:')
+print(arr2)
+
+print('\nAfter applying reciprocal function:') 
+print(np.reciprocal(arr2))
+Our array is:
+[ 25.     1.33   1.     1.   100.  ]
+
+After applying reciprocal function:
+[0.04      0.7518797 1.        1.        0.01     ]
+
+The second array is:
+[25]
+
+After applying reciprocal function:
+[0]
+# Python code to perform power operation
+# on NumPy array
+
+
+import numpy as np 
+
+
+arr = np.array([5, 10, 15]) 
+
+print('First array is:') 
+print(arr)
+
+print('\nApplying power function:') 
+print(np.power(arr, 2))
+
+print('\nSecond array is:') 
+arr1 = np.array([1, 2, 3]) 
+print(arr1)
+
+print('\nApplying power function again:') 
+print(np.power(arr, arr1))
+First array is:
+[ 5 10 15]
+
+Applying power function:
+[ 25 100 225]
+
+Second array is:
+[1 2 3]
+
+Applying power function again:
+[   5  100 3375]
+# Python code to perform mod function
+# on NumPy array
+
+
+import numpy as np 
+
+
+arr = np.array([5, 15, 20]) 
+arr1 = np.array([2, 5, 9]) 
+
+print('First array:') 
+print(arr) 
+
+print('\nSecond array:') 
+print(arr1)
+
+print('\nApplying mod() function:') 
+print(np.mod(arr, arr1))
+
+print('\nApplying remainder() function:') 
+print(np.remainder(arr, arr1))
+First array:
+[ 5 15 20]
+
+Second array:
+[2 5 9]
+
+Applying mod() function:
+[1 0 2]
+
+Applying remainder() function:
+[1 0 2]
+9. Linear Algebra in NumPy Array
+The Linear Algebra module of NumPy offers various methods to apply linear algebra on any numpy array. One can find:
+
+1. rank, determinant, trace, etc. of an array.
+2. eigen values of matrices
+3. matrix and vector products (dot, inner, outer,etc. product), matrix exponentiation
+4. solve linear or tensor equations and much more!
+# 1. rank, determinant, trace, etc. of an array.
+# Importing numpy as np
+import numpy as np
+ 
+A = np.array([[6, 1, 1],
+              [4, -2, 5],
+              [2, 8, 7]])
+ 
+# Rank of a matrix
+print("Rank of A:", np.linalg.matrix_rank(A))
+ 
+# Trace of matrix A
+print("\nTrace of A:", np.trace(A))
+ 
+# Determinant of a matrix
+print("\nDeterminant of A:", np.linalg.det(A))
+ 
+# Inverse of matrix A
+print("\nInverse of A:\n", np.linalg.inv(A))
+ 
+print("\nMatrix A raised to power 3:\n",
+           np.linalg.matrix_power(A, 3))
+Rank of A: 3
+
+Trace of A: 11
+
+Determinant of A: -306.0
+
+Inverse of A:
+ [[ 0.17647059 -0.00326797 -0.02287582]
+ [ 0.05882353 -0.13071895  0.08496732]
+ [-0.11764706  0.1503268   0.05228758]]
+
+Matrix A raised to power 3:
+ [[336 162 228]
+ [406 162 469]
+ [698 702 905]]
+# 2. eigen values of matrices
+# Python program explaining
+# eigh() function
+ 
+from numpy import linalg as geek
+ 
+# Creating an array using array 
+# function
+a = np.array([[1, -2j], [2j, 5]])
+ 
+print("Array is :",a)
+ 
+# calculating an eigen value
+# using eigh() function
+c, d = geek.eigh(a)
+ 
+print("Eigen value is :", c)
+print("Eigen value is :", d)
+Array is : [[ 1.+0.j -0.-2.j]
+ [ 0.+2.j  5.+0.j]]
+Eigen value is : [0.17157288 5.82842712]
+Eigen value is : [[-0.92387953-0.j         -0.38268343+0.j        ]
+ [ 0.        +0.38268343j  0.        -0.92387953j]]
+# 3. matrix and vector products (dot, inner, outer,etc. product), matrix exponentiation
+# Python Program illustrating
+# numpy.dot() method
+ 
+import numpy as geek
+ 
+# Scalars
+product = geek.dot(5, 4)
+print("Dot Product of scalar values  : ", product)
+ 
+# 1D array
+vector_a = 2 + 3j
+vector_b = 4 + 5j
+ 
+product = geek.dot(vector_a, vector_b)
+print("Dot Product  : ", product)
+Dot Product of scalar values  :  20
+Dot Product  :  (-7+22j)
+# 4. solve linear or tensor equations and much more!
+# Python Program illustrating
+# numpy.linalg.solve() method
+ 
+import numpy as np
+ 
+# Creating an array using array
+# function
+a = np.array([[1, 2], [3, 4]])
+ 
+# Creating an array using array
+# function
+b = np.array([8, 18])
+ 
+print(("Solution of linear equations:", 
+      np.linalg.solve(a, b)))
+('Solution of linear equations:', array([2., 3.]))
+10. NumPy and Random Data
+1. ranf() function
+2. random_sample() function
+3. randint() function
+4. numpy.random.choice() in Python
+5. numpy.random.geometric() in Python
+# 1. ranf() function
+# Python program explaining 
+# numpy.random.random() function 
+
+# importing numpy 
+import numpy as geek 
+
+# output array 
+out_arr = geek.random.random((2, 3, 2)) 
+print ("Output 3D Array filled with random floats : ", out_arr) 
+Output 3D Array filled with random floats :  [[[0.53962513 0.01416051]
+  [0.09711613 0.9905184 ]
+  [0.2249637  0.4273785 ]]
+
+ [[0.01691846 0.80823725]
+  [0.69195089 0.03662705]
+  [0.14509583 0.78992142]]]
+# 2. random_sample() function
+# Python program explaining 
+# numpy.random.random_sample() function 
+
+# importing numpy 
+import numpy as geek 
+
+
+# output array 
+out_arr = geek.random.random_sample(size =(1, 3)) 
+print ("Output 2D Array filled with random floats : ", out_arr) 
+Output 2D Array filled with random floats :  [[0.37448439 0.2437468  0.34929747]]
+# 3. randint() function
+# Python program explaining 
+# numpy.random.randint() function 
+
+# importing numpy 
+import numpy as geek 
+
+
+# output array 
+out_arr = geek.random.randint(low = 4, size =(2, 3)) 
+print ("Output 2D Array filled with random integers : ", out_arr) 
+ 
+Output 2D Array filled with random integers :  [[1 3 0]
+ [2 0 3]]
+# 4. numpy.random.choice() in Python
+# import choice 
+import numpy as np 
+import matplotlib.pyplot as plt 
+
+# Using choice() method 
+gfg = np.random.choice(13, 5000) 
+
+count, bins, ignored = plt.hist(gfg, 25, density = True) 
+plt.show()
+
+# 5. numpy.random.geometric() in Python
+# import numpy and geometric 
+import numpy as np 
+import matplotlib.pyplot as plt 
+
+# Using geometric() method 
+gfg = np.random.geometric(0.65, 1000) 
+
+count, bins, ignored = plt.hist(gfg, 40, density = True) 
+plt.show()
+
+11. Sorting and Searching in NumPy Array
+numpy.sort() : This function returns a sorted copy of an array.
+# importing libraries
+import numpy as np
+ 
+# sort along the first axis
+a = np.array([[12, 15], [10, 1]])
+arr1 = np.sort(a, axis = 0)        
+print ("Along first axis : \n", arr1)        
+ 
+ 
+# sort along the last axis
+a = np.array([[10, 15], [12, 1]])
+arr2 = np.sort(a, axis = -1)        
+print ("\nAlong first axis : \n", arr2)
+ 
+ 
+a = np.array([[12, 15], [10, 1]])
+arr1 = np.sort(a, axis = None)        
+print ("\nAlong none axis : \n", arr1)
+Along first axis : 
+ [[10  1]
+ [12 15]]
+
+Along first axis : 
+ [[10 15]
+ [ 1 12]]
+
+Along none axis : 
+ [ 1 10 12 15]
+numpy.argmax() : This function returns indices of the max element of the array in a particular axis.
+# Python Program illustrating
+# working of argmax()
+ 
+import numpy as geek 
+ 
+# Working on 2D array
+array = geek.arange(12).reshape(3, 4)
+print("INPUT ARRAY : \n", array)
+ 
+# No axis mentioned, so works on entire array
+print("\nMax element : ", geek.argmax(array))
+ 
+# returning Indices of the max element
+# as per the indices
+print(("\nIndices of Max element : "
+      , geek.argmax(array, axis=0)))
+print(("\nIndices of Max element : "
+      , geek.argmax(array, axis=1)))
+INPUT ARRAY : 
+ [[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+
+Max element :  11
+('\nIndices of Max element : ', array([2, 2, 2, 2]))
+('\nIndices of Max element : ', array([3, 3, 3]))
+12. Universal Functions
+NumPy Universal functions (ufuncs in short) are simple mathematical functions that operate on ndarray (N-dimensional array) in an element-wise fashion.
+
+It supports array broadcasting, type casting, and several other standard features. NumPy provides various universal functions like standard trigonometric functions, functions for arithmetic operations, handling complex numbers, statistical functions, etc.
+
+13. Working With Images
+Images are an easier way to represent the working model. In Machine Learning, Python uses the image data in the format of Height, Width, Channel format.
